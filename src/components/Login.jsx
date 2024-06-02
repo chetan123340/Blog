@@ -16,7 +16,7 @@ function Login() {
         try {
             const session = await authService.login(data)
             if (session) {
-                const userData = await authService.getCurrentUser
+                const userData = await authService.getCurrentUser()
                 if (userData) dispatch(authLogin(userData))
                 navigate("/")
             }
@@ -44,6 +44,38 @@ function Login() {
                     </Link>
                 </p>
                 {error && <p className="mt-8 text-red-600 text-center">{error}</p>}
+                <form className="mt-8" onSubmit={handleSubmit(login)}>
+                    <div className="space-y-5">
+                        <Input
+                            type="email"
+                            placeholder="Enter your email"
+                            label="Email: "
+                            {
+                            ...register("email", {
+                                required: true,
+                                validate: {
+                                    matchPattern: (value) => {
+                                        /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
+                                            "Email address must be a valid address"
+                                    }
+                                }
+                            })
+                            }
+                        />
+                        <Input
+                            type="password"
+                            placeholder="Enter your password"
+                            label="Password: "
+                            {
+                            ...register("password", {
+                                required: true
+                            }
+                            )
+                            }
+                        />
+                        <Button type="submit" className="w-full">Sign in</Button>
+                    </div>
+                </form>
             </div>
         </div>
     );
