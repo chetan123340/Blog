@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 function AllPosts() {
     const [posts, setPosts] = useState([])
     useEffect(()=>{
-        service.getPost([]).then((posts)={
+        service.getPost([]).then((posts)=>{
             if (posts) {
                 setPosts(posts)
             }

@@ -11,8 +11,10 @@ import Signup from "./Signup"
 import Login from "./Login"
 import PostForm from "./post-form/PostForm"
 import Postcard from "./Postcard"
+import AuthLayout from "./AuthLayout"
 
 export {
+    AuthLayout,
     Postcard,
     PostForm,
     Header,
